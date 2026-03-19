@@ -1,6 +1,8 @@
 import { fetchFilteredCustomers } from '@/app/lib/data';
 import { lusitana } from '@/app/ui/fonts';
 
+export const dynamic = 'force-dynamic';
+
 export default async function Page() {
   const customers = await fetchFilteredCustomers('');
 
