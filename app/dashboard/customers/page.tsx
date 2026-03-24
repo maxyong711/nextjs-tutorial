@@ -4,7 +4,14 @@ import { lusitana } from '@/app/ui/fonts';
 export const dynamic = 'force-dynamic';
 
 export default async function Page() {
-  const customers = await fetchFilteredCustomers('');
+  let customers = [];
+  try {
+    customers = await fetchFilteredCustomers('');
+  } catch (error) {
+    console.error('Error fetching customers:', error);
+    // In production, you might want to return an error page or fallback
+    throw error; // Re-throw to trigger error boundary
+  }
 
   return (
     <div className="w-full">
