@@ -15,12 +15,26 @@ const iconMap = {
 };
 
 export default async function CardWrapper() {
+  let cardData = {
+    numberOfInvoices: 0,
+    numberOfCustomers: 0,
+    totalPaidInvoices: '$0.00',
+    totalPendingInvoices: '$0.00',
+  };
+  
+  try {
+    cardData = await fetchCardData();
+  } catch (error) {
+    console.error('Error fetching card data in CardWrapper:', error);
+    // Continue with default values
+  }
+  
   const {
     numberOfInvoices,
     numberOfCustomers,
     totalPaidInvoices,
     totalPendingInvoices,
-  } = await fetchCardData();
+  } = cardData;
 
   return (
     <>
